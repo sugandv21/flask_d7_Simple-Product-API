@@ -19,7 +19,6 @@ with app.app_context():
 def home():
     return redirect(url_for("products"))
 
-# ------------------ Validation ------------------
 def validate_price(price):
     try:
         price = float(price)
@@ -27,7 +26,6 @@ def validate_price(price):
     except (ValueError, TypeError):
         return False
 
-# ------------------ Resources ------------------
 class ProductListResource(Resource):
     def get(self):
         products = Product.query.all()
@@ -88,4 +86,5 @@ api.add_resource(ProductListResource, "/products", endpoint="products")
 api.add_resource(ProductResource, "/products/<int:id>", endpoint="product")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
+
